@@ -1,6 +1,7 @@
 package com.example.otpservice.repository;
 
 import com.example.otpservice.entity.Otp;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,5 +36,10 @@ class OtpRepositoryTest {
 //                .isEqualTo(expirationTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         assertThat(actualOtp.get().getCreatedAt()).isNotNull();
         assertThat(actualOtp.get().getUpdatedAt()).isNotNull();
+    }
+
+    @AfterEach
+    void tearDown() {
+        otpRepository.deleteAll();
     }
 }

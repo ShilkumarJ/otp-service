@@ -1,6 +1,7 @@
 package com.example.otpservice.repository;
 
 import com.example.otpservice.entity.User;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,5 +29,10 @@ class UserRepositoryTest {
         assertThat(actualUser).isPresent();
         assertThat(actualUser.get().getEmailAddress()).isEqualTo(user.getEmailAddress());
         assertThat(actualUser.get().getPhoneNumber()).isEqualTo(user.getPhoneNumber());
+    }
+
+    @AfterEach
+    void tearDown() {
+        userRepository.deleteAll();
     }
 }
